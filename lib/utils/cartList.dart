@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import '../Models/cartModel.dart';
 
 class cartList {
@@ -40,14 +42,10 @@ class cartList {
   ];
 
   // Get Tasks List...
-  List<cartModel> get items {
-    return _items;
-  }
+  UnmodifiableListView<cartModel> get items => UnmodifiableListView(_items);
 
   // Get Task Count...
-  int get itemCount {
-    return _items.length;
-  }
+  int get itemCount => _items.length;
 
   // Add Task...
   void addTask(String productName, String img, String price, int quantity) {
