@@ -1,10 +1,10 @@
 class cartModel {
-  final String productName;
-  final String price;
-  final String img;
-  final int quantity;
+  String productName;
+  int price;
+  String img;
+  int quantity;
 
-  const cartModel({
+  cartModel({
     required this.productName,
     required this.img,
     required this.price,

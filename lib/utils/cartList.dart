@@ -1,45 +1,11 @@
 import 'dart:collection';
 
+import 'package:flutter/material.dart';
+
 import '../Models/cartModel.dart';
 
-class cartList {
-  List<cartModel> _items = [
-    cartModel(
-      productName: "adfasdf",
-      img:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgt6KC-4JDGaV2UWo6XdxIyBXsK6HhV5lwtQ&usqp=CAU",
-      price: "500",
-      quantity: 2,
-    ),
-    cartModel(
-      productName: "adfasdf",
-      img:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgt6KC-4JDGaV2UWo6XdxIyBXsK6HhV5lwtQ&usqp=CAU",
-      price: "500",
-      quantity: 2,
-    ),
-    cartModel(
-      productName: "adfasdf",
-      img:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgt6KC-4JDGaV2UWo6XdxIyBXsK6HhV5lwtQ&usqp=CAU",
-      price: "500",
-      quantity: 2,
-    ),
-    cartModel(
-      productName: "adfasdf",
-      img:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgt6KC-4JDGaV2UWo6XdxIyBXsK6HhV5lwtQ&usqp=CAU",
-      price: "500",
-      quantity: 2,
-    ),
-    cartModel(
-      productName: "adfasdf",
-      img:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgt6KC-4JDGaV2UWo6XdxIyBXsK6HhV5lwtQ&usqp=CAU",
-      price: "500",
-      quantity: 2,
-    ),
-  ];
+class cartList extends ChangeNotifier {
+  List<cartModel> _items = [];
 
   // Get Tasks List...
   UnmodifiableListView<cartModel> get items => UnmodifiableListView(_items);
@@ -47,8 +13,27 @@ class cartList {
   // Get Task Count...
   int get itemCount => _items.length;
 
+  incrementQuantity(int index) => _items[index].quantity++;
+  decrementQuantity(int index) =>
+      _items[index].quantity != 1 ? _items[index].quantity-- : 1;
+
+  void deleteItem(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
+
+  String getTotal() {
+    int total = 0;
+
+    for (cartModel item in _items) {
+      // total = item.quantity * item.price
+    }
+
+    return total.toString();
+  }
+
   // Add Task...
-  void addTask(String productName, String img, String price, int quantity) {
+  void addTask(String productName, String img, int price, int quantity) {
     _items.add(
       cartModel(
         productName: productName,
@@ -57,5 +42,6 @@ class cartList {
         quantity: quantity,
       ),
     );
+    notifyListeners();
   }
 }
