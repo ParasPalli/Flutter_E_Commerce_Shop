@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import '../Models/cartModel.dart';
 
 class cartList extends ChangeNotifier {
-  List<cartModel> _items = [];
+  final List<cartModel> _items = [];
 
   // Get Tasks List...
   UnmodifiableListView<cartModel> get items => UnmodifiableListView(_items);
@@ -28,6 +28,11 @@ class cartList extends ChangeNotifier {
       total += item.quantity * double.parse(item.price);
     }
     return total.toStringAsFixed(2);
+  }
+
+  void clearitems() {
+    _items.clear();
+    notifyListeners();
   }
 
   // Add Task...
