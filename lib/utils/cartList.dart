@@ -37,14 +37,24 @@ class cartList extends ChangeNotifier {
 
   // Add Task...
   void addTask(String productName, String img, String price, int quantity) {
-    _items.add(
-      cartModel(
-        productName: productName,
-        img: img,
-        price: price,
-        quantity: quantity,
-      ),
-    );
+    bool item_contain = _items.any((item) {
+      if (item.productName == productName) {
+        item.quantity++;
+        return true;
+      }
+      return false;
+    });
+
+    item_contain
+        ? ""
+        : _items.add(
+            cartModel(
+              productName: productName,
+              img: img,
+              price: price,
+              quantity: quantity,
+            ),
+          );
     notifyListeners();
   }
 }
