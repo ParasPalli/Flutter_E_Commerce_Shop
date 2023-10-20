@@ -119,9 +119,9 @@ class _myCartState extends State<myCart> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
-                "\$252",
-                style: TextStyle(
+              Text(
+                Provider.of<cartList>(context).getTotal(),
+                style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                     color: Colors.white),

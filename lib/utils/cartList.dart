@@ -23,17 +23,15 @@ class cartList extends ChangeNotifier {
   }
 
   String getTotal() {
-    int total = 0;
-
-    for (cartModel item in _items) {
-      // total = item.quantity * item.price
+    double total = 0;
+    for (var item in _items) {
+      total += item.quantity * double.parse(item.price);
     }
-
-    return total.toString();
+    return total.toStringAsFixed(2);
   }
 
   // Add Task...
-  void addTask(String productName, String img, int price, int quantity) {
+  void addTask(String productName, String img, String price, int quantity) {
     _items.add(
       cartModel(
         productName: productName,

@@ -1,6 +1,6 @@
 class cartModel {
   String productName;
-  int price;
+  String price;
   String img;
   int quantity;
 
